@@ -14,4 +14,5 @@ class App extends React.Component {
   }
 }
 
+//This line makes the App class available for inclusion in other files like index.js
 export default App;
