@@ -3,27 +3,20 @@ import './Counter.css';
 
 class Counter extends React.Component {
 
-  // increment = (countBy) => {
-  //   this.setState({ count: this.state.count + this.props.countBy })
-  // }
-
-  // We're going to need this
-  // decrement = (countBy) => {
-  //   this.setState({ count: this.state.count - this.props.countBy })
-  // }
-
   render() {
-    console.log(this.props)
     return (
-      <div className="counter">
-        <button onClick={() => this.props.increment(this.props.countBy, this.props.countState)}>+</button>
+      <div>
+        <div className="counter">
+          <button onClick={ () => {this.props.increment(this.props.countBy, this.props.index)} }>+</button>
+          <div className="count"> {this.props.count}</div>
+          <button onClick={ () => {this.props.decrement(this.props.countBy, this.props.index)} }>-</button>
+        </div>
+        <div className="total">{this.props.total}</div>
       </div>
       )
   }
 }
 
-        // <div className="count">{this.state.count}</div>
-        // <button onClick={this.decrement}>-</button>
 
 
 export default Counter

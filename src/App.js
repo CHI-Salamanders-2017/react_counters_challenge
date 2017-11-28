@@ -7,34 +7,33 @@ class App extends React.Component {
     super()
 
     this.state = {
-      totalCounterValues: 0,
-      counts: () =>
-
-      // counts: {
-      //   first: 0,
-      //   second: 0,
-      //   third: 0
-      // }
-      // we want counts to be a function
+      count: [0, 0, 0],
+      total: 0
     }
   }
 
-  increment = (countBy, key) => {
-    this.setState({
-      counts: {
-        first: 5
-      }
-    });
-    console.log(this.state)
-    // console.log(countBy, countState)
+  increment = (countBy, index) => {
+    const count = [...this.state.count];
+    count[index] = count[index] + countBy;
+    this.setState({ count });
+    this.setState({ total: count.reduce((sum, newTotal) => sum + newTotal)});
   }
+
+  decrement = (countBy, index) => {
+    const count = [...this.state.count];
+    count[index] = count[index] - countBy;
+    this.setState({ count });
+    this.setState({ total: count.reduce((sum, newTotal) => sum + newTotal)});
+  }
+
+
 
   render() {
     return (
       <div className="page-center-frame">
-        <Counter countBy={1} countState={this.state.countOfFirst} increment={this.increment} />
-        <Counter countBy={2} increment={this.increment} />
-        <Counter countBy={3} increment={this.increment} />
+        <Counter countBy={1} increment={this.increment} decrement={this.decrement} count={this.state.count[0]} index={0} />
+        <Counter countBy={2} increment={this.increment} decrement={this.decrement} count={this.state.count[1]} index={1} total={this.state.total} />
+        <Counter countBy={3} increment={this.increment} decrement={this.decrement} count={this.state.count[2]} index={2}  />
       </div>
     );
   }
