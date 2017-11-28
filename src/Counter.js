@@ -11,7 +11,6 @@ class Counter extends React.Component {
           <div className="count"> {this.props.count}</div>
           <button onClick={ () => {this.props.decrement(this.props.countBy, this.props.index)} }>-</button>
         </div>
-        <div className="total">{this.props.total}</div>
       </div>
       )
   }
@@ -19,4 +18,4 @@ class Counter extends React.Component {
 
 
 
-export default Counter
+export default Counter;
