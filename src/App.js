@@ -21,7 +21,10 @@ class App extends React.Component {
 
   addCounter = (e) => {
     e.preventDefault()
-    const countBy = +e.target.firstChild.value
+    let countBy = +e.target.firstChild.value
+
+    if(countBy === 0) countBy = 1;
+
     const counterValues = [...this.state.counterValues]
     counterValues.push({ value: 0, countBy })
     this.setState({ counterValues })
@@ -45,19 +48,23 @@ class App extends React.Component {
   render() {
     return (
       <div className="page-center-frame">
-        {
-          this.state.counterValues.map((value, index) =>
-            <Counter
-              countBy={value.countBy}
-              increment={this.increment}
-              decrement={this.decrement}
-              count={value.value}
-              index={index}
-              deleteCounter={this.deleteCounter} />
-          )
-        }
+        <div className="counters-container">
+          <div className="counters">
+            {
+              this.state.counterValues.map((value, index) =>
+                <Counter
+                  countBy={value.countBy}
+                  increment={this.increment}
+                  decrement={this.decrement}
+                  count={value.value}
+                  index={index}
+                  deleteCounter={this.deleteCounter} />
+              )
+            }
+          </div>
+        </div>
         <div className="total">{this.getTotal()}</div>
-        <form onSubmit={this.addCounter}>
+        <form className="form" onSubmit={this.addCounter}>
           <input type="text" placeholder="Count by?" />
           <button>Add a counter!</button>
         </form>
